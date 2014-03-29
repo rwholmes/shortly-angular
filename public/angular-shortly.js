@@ -1,6 +1,20 @@
-var app = angular.module('app', []);
+var app = angular.module('app', ['ngRoute']);
 
-// angular.module('app.services', [])
+app.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.
+  when('/', {
+    templateUrl: 'linksList.html',
+    controller: 'appController'
+  }).
+  when('/create', {
+    templateUrl: 'createLink.html',
+    controller: 'Ctrl'
+  }).
+  otherwise({
+    redirectTo: '/'
+  });
+}]);
+
 app.factory('linkServices', ['$http', function($http) {
   var getLinks = function() {
     return $http({
@@ -15,7 +29,6 @@ app.factory('linkServices', ['$http', function($http) {
 }]);
 
 app.controller('appController', function($scope, linkServices) {
-  // console.log('linkServices: ', linkServices.linkServices);
   var links = linkServices.getLinks().then(function(data) {
     $scope.links = data;
   });
@@ -31,6 +44,3 @@ app.controller('Ctrl', function($scope, $http) {
     });
   };
 });
-
-// Added app declaration at top. Replaced angular.module... with app.
-// added html extensions to login and signup
