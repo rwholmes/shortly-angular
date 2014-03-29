@@ -1,5 +1,6 @@
 <div ng-controller='appController' id='container'>
-  <div class='link' ng-repeat='link in links'>
+  <input type='text' ng-model='linkSearch' placeholder='Search Links'></input>
+  <div class='link' ng-repeat='link in links | orderBy:"visits":true | filter:linkSearch'>
     <img src='/redirect_icon.png'/>
     <div class='info'>
       <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
