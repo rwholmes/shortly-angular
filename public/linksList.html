@@ -1,6 +1,10 @@
 <div ng-controller='appController' id='container'>
   <input type='text' ng-model='linkSearch' placeholder='Search Links'></input>
-  <div class='link' ng-repeat='link in links | orderBy:"visits":true | filter:linkSearch'>
+  <button ng-click='searchVar="visits"'>Visits</button>
+  <button ng-click='searchVar="created_at"'>Date Created</button>
+  <button ng-click='searchVar="visits"'>poo</button>
+
+  <div class='link' ng-repeat='link in links | orderBy:searchVar:true | filter:linkSearch'>
     <img src='/redirect_icon.png'/>
     <div class='info'>
       <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>

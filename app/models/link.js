@@ -8,7 +8,8 @@ var linkSchema = mongoose.Schema({
  title: String,
  code: String,
  base_url: String,
- url: String
+ url: String,
+ created_at: { type: Date, default: Date.now }
 });
 
 var Link = mongoose.model('Link', linkSchema);
